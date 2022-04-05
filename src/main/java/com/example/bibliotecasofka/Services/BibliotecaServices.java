@@ -38,6 +38,15 @@ public class BibliotecaServices {
         return bibliotecaMapper.fromCollection(repositoryBiblioteca.save(biblioteca));
     }
 
+    public Boolean disponibilidad (String nombreLibro){
+       var libro = repositoryBiblioteca.findByNombreLibro(nombreLibro);
+       return libro.getPrestado();
+    }
+
+    public Biblioteca buscarPorNombre (String nombreLibro){
+        return repositoryBiblioteca.findByNombreLibro(nombreLibro);
+    }
+
     public void borrar(String id) {
         repositoryBiblioteca.deleteById(id);
     }

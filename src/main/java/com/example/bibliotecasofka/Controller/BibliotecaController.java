@@ -1,6 +1,7 @@
 package com.example.bibliotecasofka.Controller;
 
 import com.example.bibliotecasofka.DTO.BibliotecaDTO;
+import com.example.bibliotecasofka.Model.Biblioteca;
 import com.example.bibliotecasofka.Services.BibliotecaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,16 @@ public class BibliotecaController {
     public ResponseEntity<List<BibliotecaDTO>> findAll() {
         return new ResponseEntity(bibliotecaServices.obtenerTodos(), HttpStatus.OK);
     }
+
+    @GetMapping("/disponibilidad")
+    public ResponseEntity<String> disponibilidad(@RequestBody Biblioteca Libro){
+        if(bibliotecaServices.disponibilidad(Libro.getNombreLibro())){
+            return new ResponseEntity("El Libro está disponible para prestamo", HttpStatus.OK);
+        }
+        return new ResponseEntity(bibliotecaServices.buscarPorNombre(Libro.getNombreLibro()).getFechaPrestamo(),
+                HttpStatus.OK);
+    }
+    
 
     @PostMapping("/crear")
     public ResponseEntity<BibliotecaDTO> create(@RequestBody BibliotecaDTO bibliotecaDTO) {
