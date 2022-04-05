@@ -1,7 +1,7 @@
 package com.example.bibliotecasofka.Services;
 
 
-import com.example.bibliotecasofka.DTO.BibliotecaDTO;
+import com.example.bibliotecasofka.DTO.DTO;
 import com.example.bibliotecasofka.DTO.BibliotecaMapper;
 import com.example.bibliotecasofka.Model.Biblioteca;
 import com.example.bibliotecasofka.Repository.RepositoryBiblioteca;
@@ -17,23 +17,23 @@ public class BibliotecaServices {
     RepositoryBiblioteca repositoryBiblioteca;
     BibliotecaMapper bibliotecaMapper = new BibliotecaMapper();
 
-    public List<BibliotecaDTO> obtenerTodos() {
+    public List<DTO> obtenerTodos() {
         List<Biblioteca> bibliotecas = (List<Biblioteca>)repositoryBiblioteca.findAll();
         return bibliotecaMapper.fromCollectionList(bibliotecas);
     }
 
-    public BibliotecaDTO obtenerPorId(String id) {
+    public DTO obtenerPorId(String id) {
         Biblioteca biblioteca = repositoryBiblioteca.findById(id).orElseThrow(() -> new RuntimeException("Libro no encontrado"));
         return bibliotecaMapper.fromCollection(biblioteca);
     }
 
-    public BibliotecaDTO crear(BibliotecaDTO bibliotecaDTO) {
-        Biblioteca biblioteca = bibliotecaMapper.fromDTO(bibliotecaDTO);
+    public DTO crear(DTO DTO) {
+        Biblioteca biblioteca = bibliotecaMapper.fromDTO(DTO);
         return bibliotecaMapper.fromCollection(repositoryBiblioteca.save(biblioteca));
     }
 
-    public BibliotecaDTO modificar(BibliotecaDTO bibliotecaDTO) {
-        Biblioteca biblioteca = bibliotecaMapper.fromDTO(bibliotecaDTO);
+    public DTO modificar(DTO DTO) {
+        Biblioteca biblioteca = bibliotecaMapper.fromDTO(DTO);
         repositoryBiblioteca.findById(biblioteca.getId()).orElseThrow(() -> new RuntimeException("Libro no encontrado"));
         return bibliotecaMapper.fromCollection(repositoryBiblioteca.save(biblioteca));
     }

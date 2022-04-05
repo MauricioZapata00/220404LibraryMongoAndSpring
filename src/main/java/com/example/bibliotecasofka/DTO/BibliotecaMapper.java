@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BibliotecaMapper {
 
-    public Biblioteca fromDTO(BibliotecaDTO dto) {
+    public Biblioteca fromDTO(DTO dto) {
         Biblioteca biblioteca = new Biblioteca();
         biblioteca.setId(dto.getId());
         biblioteca.setNombreLibro(dto.getNombreLibro());
@@ -21,24 +21,24 @@ public class BibliotecaMapper {
         return biblioteca;
     }
 
-    public BibliotecaDTO fromCollection(Biblioteca collection) {
-        BibliotecaDTO bibliotecaDTO = new BibliotecaDTO();
-        bibliotecaDTO.setId(collection.getId());
-        bibliotecaDTO.setNombreLibro(collection.getNombreLibro());
-        bibliotecaDTO.setNombreAutor(collection.getNombreAutor());
-        bibliotecaDTO.setGenero(collection.getGenero());
-        bibliotecaDTO.setTipo(collection.getTipo());
-        bibliotecaDTO.setFechaPrestamo(collection.getFechaPrestamo());
-        bibliotecaDTO.setPrestado(collection.getPrestado());
-        return bibliotecaDTO;
+    public DTO fromCollection(Biblioteca collection) {
+        DTO DTO = new DTO();
+        DTO.setId(collection.getId());
+        DTO.setNombreLibro(collection.getNombreLibro());
+        DTO.setNombreAutor(collection.getNombreAutor());
+        DTO.setGenero(collection.getGenero());
+        DTO.setTipo(collection.getTipo());
+        DTO.setFechaPrestamo(collection.getFechaPrestamo());
+        DTO.setPrestado(collection.getPrestado());
+        return DTO;
     }
 
-    public List<BibliotecaDTO> fromCollectionList(List<Biblioteca> collection) {
+    public List<DTO> fromCollectionList(List<Biblioteca> collection) {
         if (collection == null) {
             return null;
 
         }
-        List<BibliotecaDTO> list = new ArrayList(collection.size());
+        List<DTO> list = new ArrayList(collection.size());
         Iterator listTracks = (Iterator) collection.iterator();
 
         while(listTracks.hasNext()) {

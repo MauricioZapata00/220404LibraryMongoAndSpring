@@ -1,6 +1,6 @@
 package com.example.bibliotecasofka.Controller;
 
-import com.example.bibliotecasofka.DTO.BibliotecaDTO;
+import com.example.bibliotecasofka.DTO.DTO;
 import com.example.bibliotecasofka.Model.Biblioteca;
 import com.example.bibliotecasofka.Services.BibliotecaServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class BibliotecaController {
     BibliotecaServices bibliotecaServices;
 
     @GetMapping("/{id}")
-    public ResponseEntity<BibliotecaDTO> findbyId(@PathVariable("id") String id) {
+    public ResponseEntity<DTO> findbyId(@PathVariable("id") String id) {
         return new ResponseEntity(bibliotecaServices.obtenerPorId(id), HttpStatus.OK);
     }
 
     @GetMapping()
-    public ResponseEntity<List<BibliotecaDTO>> findAll() {
+    public ResponseEntity<List<DTO>> findAll() {
         return new ResponseEntity(bibliotecaServices.obtenerTodos(), HttpStatus.OK);
     }
 
@@ -38,14 +38,14 @@ public class BibliotecaController {
     
 
     @PostMapping("/crear")
-    public ResponseEntity<BibliotecaDTO> create(@RequestBody BibliotecaDTO bibliotecaDTO) {
-        return new ResponseEntity(bibliotecaServices.crear(bibliotecaDTO), HttpStatus.CREATED);
+    public ResponseEntity<DTO> create(@RequestBody DTO DTO) {
+        return new ResponseEntity(bibliotecaServices.crear(DTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/modificar")
-    public ResponseEntity<BibliotecaDTO> update(@RequestBody BibliotecaDTO bibliotecaDTO){
-        if (bibliotecaDTO.getId() != null){
-            return new ResponseEntity(bibliotecaServices.modificar(bibliotecaDTO),HttpStatus.OK);
+    public ResponseEntity<DTO> update(@RequestBody DTO DTO){
+        if (DTO.getId() != null){
+            return new ResponseEntity(bibliotecaServices.modificar(DTO),HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }

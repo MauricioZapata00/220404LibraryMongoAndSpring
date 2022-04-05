@@ -1,6 +1,6 @@
 package com.example.bibliotecasofka.DTO;
 
-public class BibliotecaDTO {
+public class DTO {
 
     private String id;
     private String nombreLibro;
@@ -50,7 +50,7 @@ public class BibliotecaDTO {
         this.prestado = prestado;
     }
 
-    public BibliotecaDTO() {
+    public DTO() {
     }
 
     public String getFechaPrestamo() {
